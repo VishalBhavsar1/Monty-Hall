@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Monty Hall Problem</title>
+  </head>
+  <body>
+    <h1>The Monty Hall Problem</h1>
+
+    <script>
+        var n = 1000;
+        var staychoice = 0;
+        var switchchoice= 0;
+        for(var i=0; i<n; i++){
+           
+            // document.write("<p>Count : </p>" + i);
+
+            // Randomly place a car in a door 1, 2, or 3
+            // let car = Math.floor(Math.random() * 3) + 1;
+            var car = Math.ceil(Math.random() * 3);
+            document.write("<p>The car is in door number " + car + "</p>");
+
+            // Randomly choose a door 1, 2, or 3
+            var choice = Math.ceil(Math.random() * 3);
+            document.write("<p>The contestant chose door number " + choice + "</p>");
+
+            // Randomly choose a door 1, 2, or 3
+            var remove = Math.ceil(Math.random() * 3);
+            // Check the removed door.
+            // If the random number is the same as 'choice' or 'car', redo.
+            // while(remove === car || remove === choice){
+            //     remove = Math.ceil(Math.random() * 3);
+            // }
+
+            do {
+                remove = Math.ceil(Math.random() * 3);
+            }while(remove === car || remove === choice)
+            // Output "The host removes door number 1".
+            document.write("<p>The host remove door number " + remove + "</p>");
+
+            // what was the right choice
+            if(choice === car) {
+                staychoice += 1;
+                document.write("<p style='color:red;'>The contestant should STAY</p>");
+            } else {
+                switchchoice +=1;
+                document.write("<p style='color:green;'>The contestant should SWITCH</p>");
+            }
+          
+
+        }
+        var stayPercent = Math.round((staychoice / 1000) * 100);
+        var switchPercent = Math.round((switchchoice / 1000) * 100);
+        
+          document.write(`<h2 style=color:red;>STAY CHOICE correct ${stayPercent} % of times </h2>`);
+            document.write(`<h2 style=color:green;>SWITCH CHOICE correct ${switchPercent} % of times </h2>`);
+    </script>
+  </body>
+</html>
